@@ -6,7 +6,18 @@ def index(request):
 
 
 def products(request):
-    return render(request, 'mainapp/products.html')
+    sub_links = [
+        {'href': 'products_all', 'title': 'все'},
+        {'href': 'products_home', 'title': 'дом'},
+        {'href': 'products_office', 'title': 'офис'},
+        {'href': 'products_modern', 'title': 'модерн'},
+        {'href': 'products_classic', 'title': 'классика'},
+    ]
+
+    context = {
+        'sub_links': sub_links
+    }
+    return render(request, 'mainapp/products.html', context)
 
 
 def contact(request):
