@@ -1,8 +1,12 @@
 from django.shortcuts import render
+from mainapp.models import Product
 
 
 def index(request):
-    return render(request, 'mainapp/index.html')
+    context = {
+        'products': Product.objects.all()[:4]
+    }
+    return render(request, 'mainapp/index.html', context)
 
 
 def products(request):
