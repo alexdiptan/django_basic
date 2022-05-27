@@ -1,6 +1,15 @@
 <ul class="links-menu">
+    <li>
+        <a href="{% url 'products:product_list' 0 %}">
+                все
+        </a>
+    </li>
     {% for menu_part in sub_links %}
-        <li><a href="{% url menu_part.href %}" {% if request.resolver_match.url_name == menu_part.href %}
-               class="active" {% endif %}>{{ menu_part.title }}</a></li>
+        <li>
+            <a href="{% url 'products:product_list' menu_part.pk %}"
+                    {% if request.resolver_match.url_name == menu_part.href %}
+               class="active" {% endif %}>{{ menu_part.name }}
+            </a>
+        </li>
     {% endfor %}
 </ul>
