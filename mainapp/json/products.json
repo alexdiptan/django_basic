@@ -1,0 +1,74 @@
+[
+  {
+    "category": "Дом",
+    "name": "Дом1",
+    "image": "product/product-1.jpg",
+    "short_desc": "Краткое описание дом1",
+    "description": "Полное красивое описание категории товара дом1",
+    "price": 2500.0,
+    "quantity": 10
+  },
+  {
+    "category": "Дом",
+    "name": "Дом2",
+    "image": "product/product-2.jpg",
+    "short_desc": "Краткое описание дом2",
+    "description": "Полное красивое описание категории товара дом2",
+    "price": 1800.0,
+    "quantity": 10
+  },
+  {
+    "category": "Офис",
+    "name": "Офис1",
+    "image": "product/product-3.jpg",
+    "short_desc": "Краткое описание офис1",
+    "description": "Полное красивое описание категории товара офис1",
+    "price": 3000.0,
+    "quantity": 10
+  },
+  {
+    "category": "Офис",
+    "name": "Офис2",
+    "image": "product/product-4.jpg",
+    "short_desc": "Краткое описание офис2",
+    "description": "Полное красивое описание категории товара офис2",
+    "price": 100.0,
+    "quantity": 10
+  },
+  {
+    "category": "Модерн",
+    "name": "Модерн1",
+    "image": "product/product-11.jpg",
+    "short_desc": "Краткое описание модерн1",
+    "description": "Полное красивое описание категории товара модерн1",
+    "price": 5000.0,
+    "quantity": 10
+  },
+  {
+    "category": "Модерн",
+    "name": "Модерн2",
+    "image": "product/product-21.jpg",
+    "short_desc": "Краткое описание модерн2",
+    "description": "Полное красивое описание категории товара модерн2",
+    "price": 2000.0,
+    "quantity": 10
+  },
+  {
+    "category": "Классика",
+    "name": "Классика1",
+    "image": "product/product-31.jpg",
+    "short_desc": "Краткое описание классика1",
+    "description": "Полное красивое описание категории товара классика1",
+    "price": 1400.0,
+    "quantity": 10
+  },
+  {
+    "category": "Классика",
+    "name": "Дом1",
+    "image": "product/product-41.jpg",
+    "short_desc": "Краткое описание классика2",
+    "description": "Полное красивое описание категории товара классика2",
+    "price": 900.0,
+    "quantity": 10
+  }
+]

@@ -1,0 +1,106 @@
+[
+  {
+    "model": "mainapp.product",
+    "pk": 5,
+    "fields": {
+      "category": 8,
+      "image": "product/product-1.jpg",
+      "name": "Дом1",
+      "short_desc": "Краткое описание дом1",
+      "description": "Полное красивое описание категории товара дом1",
+      "price": "2500.00",
+      "quantity": 10
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 6,
+    "fields": {
+      "category": 8,
+      "image": "product/product-2.jpg",
+      "name": "Дом2",
+      "short_desc": "Краткое описание дом2",
+      "description": "Полное красивое описание категории товара дом2",
+      "price": "1800.00",
+      "quantity": 10
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 7,
+    "fields": {
+      "category": 9,
+      "image": "product/product-3.jpg",
+      "name": "Офис1",
+      "short_desc": "Краткое описание офис1",
+      "description": "Полное красивое описание категории товара офис1",
+      "price": "3000.00",
+      "quantity": 10
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 8,
+    "fields": {
+      "category": 9,
+      "image": "product/product-4.jpg",
+      "name": "Офис2",
+      "short_desc": "Краткое описание офис2",
+      "description": "Полное красивое описание категории товара офис2",
+      "price": "100.00",
+      "quantity": 10
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 9,
+    "fields": {
+      "category": 10,
+      "image": "product/product-11.jpg",
+      "name": "Модерн1",
+      "short_desc": "Краткое описание модерн1",
+      "description": "Полное красивое описание категории товара модерн1",
+      "price": "5000.00",
+      "quantity": 10
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 10,
+    "fields": {
+      "category": 10,
+      "image": "product/product-21.jpg",
+      "name": "Модерн2",
+      "short_desc": "Краткое описание модерн2",
+      "description": "Полное красивое описание категории товара модерн2",
+      "price": "2000.00",
+      "quantity": 10
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 11,
+    "fields": {
+      "category": 11,
+      "image": "product/product-31.jpg",
+      "name": "Классика1",
+      "short_desc": "Краткое описание классика1",
+      "description": "Полное красивое описание категории товара классика1",
+      "price": "1400.00",
+      "quantity": 10
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 12,
+    "fields": {
+      "category": 11,
+      "image": "product/product-41.jpg",
+      "name": "Дом1",
+      "short_desc": "Краткое описание классика2",
+      "description": "Полное красивое описание категории товара классика2",
+      "price": "900.00",
+      "quantity": 10
+    }
+  }
+]
