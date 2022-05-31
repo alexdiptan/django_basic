@@ -25,6 +25,8 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
 
     path('products/', include('mainapp.urls', namespace='products')),
+    path('auth/', include('authapp.urls', namespace='authapp')),
+
 
 ]
 
