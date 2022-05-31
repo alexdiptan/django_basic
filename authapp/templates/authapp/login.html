@@ -6,5 +6,6 @@
         {{ form.as_p }}
         <button class="btn btn-primary" type="submit">Войти</button>
     </form>
-    <a class="btn-info" href="{% url 'authapp:register' %}" style="width: 100%">зарегистрироваться</a>
+    <a class="btn btn-info" href="{% url 'authapp:register' %}" style="width: 100%">зарегистрироваться</a>
+    <a class="btn btn-link" href="{% url 'index' %}" style="width: 100%">На главную</a>
 {% endblock %}
