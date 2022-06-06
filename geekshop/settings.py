@@ -134,3 +134,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authapp.ShopUser'
+
+# страница, на которую будет перенаправляться пользователь, если он не авторизован. используется для
+# замены стандартного урла декоратором @login_required
+LOGIN_URL = '/auth/login/'
