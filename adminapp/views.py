@@ -7,6 +7,13 @@ from authapp.models import ShopUser
 from mainapp.models import Category, Product
 from django.views.generic import ListView, UpdateView, CreateView, DetailView, DeleteView
 from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import UserPassesTestMixin
+
+
+class AccessMixin(UserPassesTestMixin):
+
+    def test_func(self):
+        return self.request.user.is_superuser
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -22,31 +29,47 @@ def user_create(request):
 #     return render(request, 'adminapp/user_list.html', context)
 
 # Класс (ClassBaseView - CBV) заменит контроллер который писали выше.
-class UserListView(ListView):
+class UserListView(AccessMixin, ListView):
     model = ShopUser
     template_name = 'adminapp/user_list.html'
     paginate_by = 1
 
-    @method_decorator(user_passes_test(lambda u: u.is_superuser))
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
-
-@user_passes_test(lambda u: u.is_superuser)
-def user_update(request, pk):
-    user_item = get_object_or_404(ShopUser, pk=pk)
-    if request.method == 'POST':
-        edit_form = UserAdminEditForm(request.POST, request.FILES, instance=user_item)
-        if edit_form.is_valid():
-            edit_form.save()
-            return HttpResponseRedirect(reverse('adminapp:user_update', args=[pk]))
-    else:
-        edit_form = UserAdminEditForm(instance=user_item)
-
-    context = {
-        'form': edit_form
+    extra_context = {
+        'title': 'Список пользователей'
     }
-    return render(request, 'adminapp/user_form.html', context)
+
+    # проверка на суперпользователя может быть сделана вот так или вынесена в собственный миксин (как, например,
+    # AccessMixin).
+    # @method_decorator(user_passes_test(lambda u: u.is_superuser))
+    # def dispatch(self, *args, **kwargs):
+    #     return super().dispatch(*args, **kwargs)
+
+
+# @user_passes_test(lambda u: u.is_superuser)
+# def user_update(request, pk):
+#     user_item = get_object_or_404(ShopUser, pk=pk)
+#     if request.method == 'POST':
+#         edit_form = UserAdminEditForm(request.POST, request.FILES, instance=user_item)
+#         if edit_form.is_valid():
+#             edit_form.save()
+#             return HttpResponseRedirect(reverse('adminapp:user_update', args=[pk]))
+#     else:
+#         edit_form = UserAdminEditForm(instance=user_item)
+#
+#     context = {
+#         'form': edit_form
+#     }
+#     return render(request, 'adminapp/user_form.html', context)
+
+
+class UserUpdateView(AccessMixin, UpdateView):
+    model = ShopUser
+    template_name = 'adminapp/user_form.html'
+    form_class = UserAdminEditForm
+
+    # урл на который будет совершен переход после редактирования
+    def get_success_url(self):
+        return reverse('adminapp:user_update', args=self.kwargs.get('pk'))
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -125,6 +148,11 @@ def product_delete(request):
     return None
 
 
-@user_passes_test(lambda u: u.is_superuser)
-def product_detail(request):
-    return None
+# @user_passes_test(lambda u: u.is_superuser)
+# def product_detail(request):
+#     return None
+
+
+class ProductDetailView(AccessMixin, DetailView):
+    model = Product
+    template_name = 'adminapp/product_info.html'

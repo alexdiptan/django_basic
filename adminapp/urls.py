@@ -7,7 +7,7 @@ app_name = 'adminapp'
 urlpatterns = [
     path('users/create/', adminapp.user_create, name='user_create'),
     path('users/read/', adminapp.UserListView.as_view(), name='user_read'),
-    path('users/update/<pk>/', adminapp.user_update, name='user_update'),
+    path('users/update/<pk>/', adminapp.UserUpdateView.as_view(), name='user_update'),
     path('users/delete/<pk>/', adminapp.user_delete, name='user_delete'),
 
     path('categories/create/', adminapp.category_create, name='category_create'),
@@ -19,5 +19,5 @@ urlpatterns = [
     path('products/create/<pk>/', adminapp.product_create, name='product_create'),
     path('products/update/<pk>/', adminapp.product_update, name='product_update'),
     path('products/delete/<pk>/', adminapp.product_delete, name='product_delete'),
-    path('products/detail/<pk>/', adminapp.product_detail, name='product_detail'),
+    path('products/detail/<pk>/', adminapp.ProductDetailView.as_view(), name='product_detail'),
 ]
