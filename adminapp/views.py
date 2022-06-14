@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import user_passes_test
 from adminapp.forms import UserAdminEditForm, ProductEditForm
 from authapp.models import ShopUser
 from mainapp.models import Category, Product
+from django.views.generic import ListView, UpdateView, CreateView, DetailView, DeleteView
+from django.utils.decorators import method_decorator
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -12,12 +14,22 @@ def user_create(request):
     return None
 
 
-@user_passes_test(lambda u: u.is_superuser)
-def user_read(request):
-    context = {
-        'objects': ShopUser.objects.all().order_by('-is_active', 'is_superuser')
-    }
-    return render(request, 'adminapp/user_list.html', context)
+# @user_passes_test(lambda u: u.is_superuser)
+# def user_read(request):
+#     context = {
+#         'objects': ShopUser.objects.all().order_by('-is_active', 'is_superuser')
+#     }
+#     return render(request, 'adminapp/user_list.html', context)
+
+# Класс (ClassBaseView - CBV) заменит контроллер который писали выше.
+class UserListView(ListView):
+    model = ShopUser
+    template_name = 'adminapp/user_list.html'
+    paginate_by = 1
+
+    @method_decorator(user_passes_test(lambda u: u.is_superuser))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
 @user_passes_test(lambda u: u.is_superuser)
