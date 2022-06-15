@@ -40,7 +40,7 @@
 
             <div class="description">
                 <h3 class="big-bold">{{ hot_product.name }}</h3>
-                <h3 class="red">горячее предложение</h3>
+                <h3 class="red">{{ product.category.name }}</h3>
                 <p class="price"> {{ hot_product.price|floatformat:2 }} <span>руб</span></p>
                 <a href="{% url 'basket:add' hot_product.id %}" class="red-button">
                     заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
@@ -59,10 +59,11 @@
             <div class="related-products clearfix">
                 {% for product in same_products %}
                 <div class="block">
-                    <a href="{% url 'basket:add' product.pk %}"><img src="/media/{{ product.image }}" alt="">
+                    <a href="{% url 'products:product_item' product.pk %}"><img src="/media/{{ product.image }}" alt="">
                         <div class="text">
                             <img src="{% static 'img/icon-hover.png' %}" alt="img">
                             <h4>{{ product.name }}</h4>
+                            <h4>{{ product.category.name }}</h4>
                             <p>{{ product.short_desc }}</p>
                         </div>
                     </a>
