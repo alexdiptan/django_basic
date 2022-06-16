@@ -1,8 +1,8 @@
 from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import user_passes_test
-from adminapp.forms import UserAdminEditForm, ProductEditForm
+from adminapp.forms import UserAdminEditForm, ProductEditForm, CategoryEditForm
 from authapp.models import ShopUser
 from mainapp.models import Category, Product
 from django.views.generic import ListView, UpdateView, CreateView, DetailView, DeleteView
@@ -103,9 +103,17 @@ def category_read(request):
     return render(request, 'adminapp/category_list.html', context)
 
 
-@user_passes_test(lambda u: u.is_superuser)
-def category_create(request):
-    return None
+# @user_passes_test(lambda u: u.is_superuser)
+# def category_create(request):
+#     return None
+
+
+class CategoryCreateView(AccessMixin, CreateView):
+    model = Category
+    form_class = CategoryEditForm
+    # fields = ('name', 'description')
+    success_url = reverse_lazy('adminapp:category_read')
+    template_name = 'adminapp/category_create.html'
 
 
 @user_passes_test(lambda u: u.is_superuser)
