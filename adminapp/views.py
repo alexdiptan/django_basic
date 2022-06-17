@@ -116,19 +116,6 @@ class CategoryCreateView(AccessMixin, CreateView):
     template_name = 'adminapp/category_create.html'
 
 
-# @user_passes_test(lambda u: u.is_superuser)
-# def products_list(request, pk):
-#     category_item = get_object_or_404(Category, pk=pk)
-#     products_list = Product.objects.filter(category_id=pk)
-#
-#     context = {
-#         'objects_list': products_list,
-#         'category': category_item
-#     }
-#
-#     return render(request, 'adminapp/products_list.html', context)
-
-
 # class ProductListView(ListView):
 #     model = Product
 #     template_name = 'adminapp/products_list.html'
