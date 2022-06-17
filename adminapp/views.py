@@ -116,17 +116,30 @@ class CategoryCreateView(AccessMixin, CreateView):
     template_name = 'adminapp/category_create.html'
 
 
-@user_passes_test(lambda u: u.is_superuser)
-def products_list(request, pk):
-    category_item = get_object_or_404(Category, pk=pk)
-    products_list = Product.objects.filter(category_id=pk)
+# @user_passes_test(lambda u: u.is_superuser)
+# def products_list(request, pk):
+#     category_item = get_object_or_404(Category, pk=pk)
+#     products_list = Product.objects.filter(category_id=pk)
+#
+#     context = {
+#         'objects_list': products_list,
+#         'category': category_item
+#     }
+#
+#     return render(request, 'adminapp/products_list.html', context)
 
-    context = {
-        'objects_list': products_list,
-        'category': category_item
-    }
 
-    return render(request, 'adminapp/products_list.html', context)
+class ProductListView(ListView):
+    model = Product
+    template_name = 'adminapp/products_list.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context_data = super().get_context_data(*args, **kwargs)
+        context_data['category'] = get_object_or_404(Category, pk=self.kwargs.get('pk'))
+        return context_data
+
+    def get_queryset(self):
+        return super().get_queryset().filter(category_id=self.kwargs.get('pk'))
 
 
 @user_passes_test(lambda u: u.is_superuser)
