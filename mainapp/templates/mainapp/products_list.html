@@ -22,18 +22,37 @@
                 </h2>
             </div>
 
+            <div class="pagination">
+                {% if products.has_previous %}
+                    <a href="?page={{ products.previous_page_number }}"><< Prev</a>
+                {% endif %}
+
+                {% for item in products.paginator.page_range %}
+                    {% if item == products.number %}
+                        <span>{{ item }}</span>
+                    {% else %}
+                        <a href="?page={{ item }}">{{ item }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if products.has_next %}
+                    <a href="?page={{ products.next_page_number }}">Next >> </a>
+                {% endif %}
+            </div>
+
             <div class="products">
                 {% for product in products %}
                     <div class="block">
-                    <a href="{% url 'products:product_item' product.pk %}"><img src="/media/{{ product.image }}" alt="">
-                        <div class="text">
-                            <img src="{% static 'img/icon-hover.png' %}" alt="img">
-                            <h4>{{ product.name }}</h4>
-                            <h4>{{ product.category.name }}</h4>
-                            <p>{{ product.short_desc }}</p>
-                        </div>
-                    </a>
-                </div>
+                        <a href="{% url 'products:product_item' product.pk %}"><img src="/media/{{ product.image }}"
+                                                                                    alt="">
+                            <div class="text">
+                                <img src="{% static 'img/icon-hover.png' %}" alt="img">
+                                <h4>{{ product.name }}</h4>
+                                <h4>{{ product.category.name }}</h4>
+                                <p>{{ product.short_desc }}</p>
+                            </div>
+                        </a>
+                    </div>
                 {% endfor %}
             </div>
 
