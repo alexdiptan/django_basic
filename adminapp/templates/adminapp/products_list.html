@@ -7,13 +7,13 @@
                 новый продукт
             </a>
         </button>
-        {% for object in object_list %}
+        {% for product_item in object.products.all %}
             <div class="product_record">
                 <img
-                        src="/media/{{ object.image|default:'products_images/default.jpg' }}"
-                        alt="{{ object.name }}">
+                        src="/media/{{ product_item.image|default:'products_images/default.jpg' }}"
+                        alt="{{ product_item.name }}">
                 <div class="product_name">
-                    {{ object.name|title }}
+                    {{ product_item.name|title }}
                 </div>
                 <div class="product_actions">
                     <button>

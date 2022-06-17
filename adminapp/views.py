@@ -129,17 +129,22 @@ class CategoryCreateView(AccessMixin, CreateView):
 #     return render(request, 'adminapp/products_list.html', context)
 
 
-class ProductListView(ListView):
-    model = Product
+# class ProductListView(ListView):
+#     model = Product
+#     template_name = 'adminapp/products_list.html'
+#
+#     def get_context_data(self, *args, **kwargs):
+#         context_data = super().get_context_data(*args, **kwargs)
+#         context_data['category'] = get_object_or_404(Category, pk=self.kwargs.get('pk'))
+#         return context_data
+#
+#     def get_queryset(self):
+#         return super().get_queryset().filter(category_id=self.kwargs.get('pk'))
+
+
+class CategoryDetailView(AccessMixin, DetailView):
+    model = Category
     template_name = 'adminapp/products_list.html'
-
-    def get_context_data(self, *args, **kwargs):
-        context_data = super().get_context_data(*args, **kwargs)
-        context_data['category'] = get_object_or_404(Category, pk=self.kwargs.get('pk'))
-        return context_data
-
-    def get_queryset(self):
-        return super().get_queryset().filter(category_id=self.kwargs.get('pk'))
 
 
 @user_passes_test(lambda u: u.is_superuser)
